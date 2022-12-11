@@ -58,10 +58,10 @@ pred=model.predict(X_test)
 data=rates_frame[700:1251]
 data['train']=training_set_scaled[700:1251]
 data['pred']=pred
+print(df.time)
 
-
-tab1 = dbc.Tab([dcc.Graph(id="line-chart" , figure={'data':[ {'x':df.time,'y':df.close}]}   ) , ], label="Close Volatility"  )
-tab2 = dbc.Tab([dcc.Graph(id="line-chart2" , figure={'data':[ {'x':data.time,'y':data.pred}, {'x':data.time,'y':data.train}   ]}   ) , ], label="Predict Close Volatility ( LSTM)")
+tab1 = dbc.Tab([dcc.Graph(id="line-chart", figure={'data':[{'y':df.close}]}), ], label="Close Volatility" )
+tab2 = dbc.Tab([dcc.Graph(id="line-chart2" , figure={'data':[{'y':data.pred ,'name':'Pred'}, {'y':data.train,'name':'True'}   ]}   ) , ], label="Predict Close Volatility ( LSTM)")
 tab3 = dbc.Tab([table], label="Table", className="p-4")
 tabs = dbc.Card(dbc.Tabs([tab1, tab2, tab3]))
 
